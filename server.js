@@ -10,7 +10,7 @@ const server = net.createServer();
 const pool = [];
 
 ee.on('@dm', function(client, string){
-  let nickname = string.split(' ').shift().trim;
+  let nickname = string.split(' ').shift().trim();
   let message = string.split(' ').splice(1).join(' ').trim();
 
   pool.forEach(c => {
@@ -30,8 +30,8 @@ ee.on('default', function(client, string){
   client.socket.write(`${string} is not a command \n`);
 });
 
-ee.on('@rename', function(client, string){
-  this.nickname = string; 
+ee.on('@nickname', function(client, string){
+  client.nickname = string.split(' ').shift().trim();
 });
 
 server.on('connection', function(socket){
@@ -45,6 +45,18 @@ server.on('connection', function(socket){
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
       return;
     }
+  });
+
+  socket.on('close', function(client){
+    pool.forEach( (c, i) => {
+      if(c.nickname === client.nickname){
+        pool.splice(i);
+      }
+    });
+  });
+
+  socket.on('error', function(client, err){
+    client.socket.write(err);
   });
 });
 
