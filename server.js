@@ -14,14 +14,14 @@ ee.on('@dm', function(client, string) {
 
   pool.forEach( c => {
     if (c.nickname === nickname) {
-      c.socket.write(`${client.nickname}: ${message}`);
+      c.socket.write(`${client.nickname}: ${message} \n`);
     }
   });
 });
 
 ee.on('@all', function(client, string) {
   pool.forEach( c => {
-    c.socket.write(`${client.nickname}: ${string}`);
+    c.socket.write(`${client.nickname}: ${string} \n`);
   });
 });
 
