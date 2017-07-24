@@ -1,48 +1,11 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 06: TCP Chat Server
-======
+#TCP Chat Server Docs
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+##For this project, we built a TCP chat server that lets users message everyone in the server, lets them directly message a specific user in the server, and lets the user change their nickname to whatever they desire.  
 
-## Learning Objectives  
-* students will understand how to implement a TCP server using the `net` module
-* students will understand how to work with node.js EventEmitter's
+##To get this project running, you need to open your terminal and do an npm install command which will install all the dependencies that this project needs to run.  After doing that, you'll need two terminal windows to start the project.  One window is for running the server, while the other is for using telnet to chat.  On the terminal window reserved for the server simply type "node server.js", and it should display a message saying that the server is up and describing what port it is running on.  On the terminal window reserverd for the telnet side, you need to figure out what your individual IP address is.  This is possible by typing "ifconfig" for linux or "ipconfig" for windows.  The IP address is the four numbers seperated by dots after the "inet addr" tag.  Once you have that sequence of numbers type in "telnet 'your ip address' and the port you are using".  This step will NOT work if you have not previously set up a server in the other terminal window, so make sure to do that first.  
 
-## Requirements
-#### Configuration  
-<!-- list of files, configurations, tools, etc that are required -->
-Your lab directory must include  
-* `.gitignore`
-* `.eslint`
-* `package.json`
-* `README.md`
+#Commands
 
-#### Feature Tasks  
-* create a TCP Server using the NodeJS native `net` module
-* create a `Client` Constructor
-* when sockets connect to the server, a new `Client` instance should be made
-* all clients should have a unique `id` property - this should come from the use of `node-uuid`
-* when sockets are connected with the client pool they should be given event listeners for `data`, `error`, and `close` events
- * when a socket emits the `close` event, the socket should be removed from the client pool
- * when a socket emits the `error` event, the error should be logged on the server
- * when a socket emits the `data` event, the data should be logged on the server and the commands below should be implemented
-
-## Custom commands
-* `@all` should trigger a broadcast event
-* `@nickname` should allow a user change their nickname
-* `@dm` should allow a user to send a message directly to another user by nick name or by their guest id _(unique client id)_
-* when a user sends a message, their nickname should be printed
-  * **i.e.** `cfcrew: sup hackerz`
-
-####  Documentation  
-* write a paragraph about your project
-* write documentation on how to get the project running
-* write documentation on how to connect to the server
-
-#### Testing  
-* no testing required for this lab - yay!
+##The "@all" command lets you type a message to everyone in the chat server.
+##The "@nickname" command lets you change your nickname in the client to whatever nickname you desire.
+##The "@dm" command lets you directly message anyone in the chat server by their nickname.
