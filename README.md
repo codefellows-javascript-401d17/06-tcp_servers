@@ -46,3 +46,6 @@ Your lab directory must include
 
 #### Testing  
 * no testing required for this lab - yay!
+
+### Questions and Observations
+###### I don't have very many questions regarding this assignment, it seems fairly straight forward to get a chat server running with a few basic commands. If I had more time there is a lot more potential here for some really cool features to be added.
