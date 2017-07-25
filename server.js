@@ -41,11 +41,12 @@ ee.on('@nickname', function(client, string){
       if(string !== ''){
         client.nickname = string.split(' ').shift().trim();
         client.socket.write(`Your new nickname is ${client.nickname}.\n`.green);
+        console.log(userPool);
       }else {
         client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red);
       }
     }else{
-      client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red)
+      client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red);
     }
   });
 });
@@ -65,7 +66,12 @@ ee.on('@dm', function(client, string) {
 
 ee.on('@all', function(client, string) {
   userPool.forEach( c => {
-    c.socket.write(`${client.nickname}: ${string}`);
+    if (userPool.length === 1 ) {
+      c.socket.write(`${client.nickname}, you're talking to yourself!\n`);
+      c.socket.write(`${client.nickname}: ${string}\n`);
+    }else {
+      c.socket.write(`${client.nickname}: ${string}\n`);
+    }
   });
 });
 
@@ -75,11 +81,11 @@ ee.on('@quit', function(client) {
   userPool.forEach( user => {
     if ( client.id !== user.id) {
       newPool.push(user);
-      user.socket.write(`${client.nickname} has left! \n`);
+      client.socket.write(`${client.nickname} has left! \n`);
     }
   });
   userPool = newPool;
-
+  console.log(userPool);
   client.socket.end();
 });
 
@@ -90,6 +96,7 @@ ee.on('default', function(client) {
 server.on('connection', function(socket) {
   var client = new Client(socket);
   userPool.push(client);
+  console.log(userPool);
 
   socket.write('   Welcome to James\' Chat Server!\n'.random);
   socket.write('          ╭━┳━╭━╭━╮╮\n'.white);
