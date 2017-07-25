@@ -13,16 +13,16 @@ const ee = new EE();
 let userPool = [];
 
 let helpMe = [
-  '.......................................................................\n',
-  '.   o   \\ o /  _ o        __|    \\ /     |__         o _  \\ o /   o   .\n',
-  '.  /|\\    |     /\\   __\\o   \\\o    |    o/     o/__   /\\     |    /|\\  .\n',
-  '.  / \\   / \\   | \\  /) |    ( \\  /o\\  / )    |   (\\  / |   / \\   / \\  .\n',
-  '.......................................................................\n',
-  '. cmd: \'@all <msg>\' to send a message to everyone in chat.            .\n',
-  '. cmd: \'@dm <name> <msg>\' to private message another user.            .\n',
-  '. cmd: \'@nickname <name>\' to change your name.                        .\n',
-  '. cmd: \'@quit\' to exit chat room.                                     .\n',
-  '.......................................................................\n'
+  '.......................................................................\n'.white,
+  '.   o   \\ o /  _ o        __|    \\ /     |__         o _  \\ o /   o   .\n'.white,
+  '.  /|\\    |     /\\   __\\o   \\\o    |    o/     o/__   /\\     |    /|\\  .\n'.white,
+  '.  / \\   / \\   | \\  /) |    ( \\  /o\\  / )    |   (\\  / |   / \\   / \\  .\n'.white,
+  '.......................................................................\n'.white,
+  '. cmd: \'@all <msg>\' to send a message to everyone in chat.            .\n'.white,
+  '. cmd: \'@dm <name> <msg>\' to private message another user.            .\n'.white,
+  '. cmd: \'@nickname <name>\' to change your name.                        .\n'.white,
+  '. cmd: \'@quit\' to exit chat room.                                     .\n'.white,
+  '.......................................................................\n'.white
 ];
 
 ee.on('@FML', function(client) {
