@@ -15,6 +15,10 @@ ee.on('@all', function (client, string) {
   })
 })
 
+ee.on('default', function (client, string) {
+  client.socket.write('not a command \n');
+})
+
 server.on('connection', function (socket) {
   var client = new Client(socket);
   pool.push(client);
@@ -27,6 +31,7 @@ server.on('connection', function (socket) {
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
       return;
     }
+    ee.emit('default', client, data.toString());
   })
 
 });
