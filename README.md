@@ -1,4 +1,4 @@
-!James' Chat Server
+James' Chat Server
 ======
 
 ## Submission Instructions
