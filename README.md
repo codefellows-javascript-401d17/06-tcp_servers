@@ -19,9 +19,8 @@ This project creates a simple TCP chat room using Node leveraging the 'net' modu
 
 # The following are basic instructions:
 ## Start the server:
-####Requirements: Node is installed and navigated to the working directory of the chat room application.
+#### Requirements: Node is installed and navigated to the working directory of the chat room application.
 ## Instructions:
-Run
 ```
 npm I
 ```
