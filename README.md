@@ -1,4 +1,4 @@
-James' Chat Server ![JB](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiY6vmIhKTVAhVG12MKHfz0D80QjRwIBw&url=http%3A%2F%2Fwww.stickpng.com%2Fimg%2Fyoutubers%2Fnyan-cat%2Fnyan-cat-long-rainbow&psig=AFQjCNH6P3Rgg9Qdv92EkGuJfVH_HpU88A&ust=1501058299820016)
+James' Chat Server ![JB](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjMofquhaTVAhXLqVQKHSMyCxAQjRwIBw&url=http%3A%2F%2Fp2psearcher.info%2Fnyan-cat-rainbow-png&psig=AFQjCNH6P3Rgg9Qdv92EkGuJfVH_HpU88A&ust=1501058299820016)
 ======
 
 ## Submission Instructions
