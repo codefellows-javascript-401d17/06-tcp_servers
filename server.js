@@ -27,7 +27,7 @@ let helpMe = [
 
 ee.on('@FML', function(client) {
   helpMe.forEach( helpCommand => {
-    client.socket.write(helpCoga mmand);
+    client.socket.write(helpCommand);
   });
 });
 
