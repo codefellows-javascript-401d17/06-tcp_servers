@@ -1,48 +1,7 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 06: TCP Chat Server
-======
+# TCP Server - Lab 06
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+##Description:
+This app hosts conversations between all users connected through the same server. Users get a randomly generated username upon launch. The user can change their nickname with by typing '@nickname' followed by the name they wish to change to. To message every user in the chat the user types '@all' followed by their message. To direct message another member in the chat type '@dm' followed by the username and then the message. When the user exits the chat server they are then removed from the chat pool. Follow the instructions below to connect. 
 
-## Learning Objectives  
-* students will understand how to implement a TCP server using the `net` module
-* students will understand how to work with node.js EventEmitter's
-
-## Requirements
-#### Configuration  
-<!-- list of files, configurations, tools, etc that are required -->
-Your lab directory must include  
-* `.gitignore`
-* `.eslint`
-* `package.json`
-* `README.md`
-
-#### Feature Tasks  
-* create a TCP Server using the NodeJS native `net` module
-* create a `Client` Constructor
-* when sockets connect to the server, a new `Client` instance should be made
-* all clients should have a unique `id` property - this should come from the use of `node-uuid`
-* when sockets are connected with the client pool they should be given event listeners for `data`, `error`, and `close` events
- * when a socket emits the `close` event, the socket should be removed from the client pool
- * when a socket emits the `error` event, the error should be logged on the server
- * when a socket emits the `data` event, the data should be logged on the server and the commands below should be implemented
-
-## Custom commands
-* `@all` should trigger a broadcast event
-* `@nickname` should allow a user change their nickname
-* `@dm` should allow a user to send a message directly to another user by nick name or by their guest id _(unique client id)_
-* when a user sends a message, their nickname should be printed
-  * **i.e.** `cfcrew: sup hackerz`
-
-####  Documentation  
-* write a paragraph about your project
-* write documentation on how to get the project running
-* write documentation on how to connect to the server
-
-#### Testing  
-* no testing required for this lab - yay!
+###Connect to Server and Launch:
+The app is run from the console with telnet. Enter the IP address for host computer followed by a space and the number 3000. If launched successfully you should get a message saying what PORT it is served on(3000).  
