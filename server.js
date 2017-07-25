@@ -25,13 +25,15 @@ let helpMe = [
   '.......................................................................\n'.white
 ];
 
-ee.on('@FML', function(client) {
+ee.on('@FML', function(err, client) {
+  if(err) console.log(err);
   helpMe.forEach( helpCommand => {
     client.socket.write(helpCommand);
   });
 });
 
-ee.on('@nickname', function(client, string){
+ee.on('@nickname', function(err, client, string){
+  if(err) console.log(err);
   let nickname = string.split(' ').slice(0).join(' ').trim();
   console.log(nickname);
   userPool.forEach(c =>{
@@ -51,7 +53,8 @@ ee.on('@nickname', function(client, string){
   });
 });
 
-ee.on('@dm', function(client, string) {
+ee.on('@dm', function(err, client, string) {
+  if(err) console.log(err);
   let nickname = string.split(' ').shift().trim();
   let message = string.split(' ').slice(1).join(' ').trim();
 
@@ -64,7 +67,8 @@ ee.on('@dm', function(client, string) {
   });
 });
 
-ee.on('@all', function(client, string) {
+ee.on('@all', function(err, client, string) {
+  if(err) console.log(err);
   userPool.forEach( c => {
     if (userPool.length === 1 ) {
       c.socket.write(`${client.nickname}, you're talking to yourself!\n`);
@@ -75,7 +79,8 @@ ee.on('@all', function(client, string) {
   });
 });
 
-ee.on('@quit', function(client) {
+ee.on('@quit', function(err, client) {
+  if(err) console.log(err);
   let newPool = [];
 
   userPool.forEach( user => {
@@ -93,7 +98,8 @@ ee.on('default', function(client) {
   client.socket.write('not a command \n');
 });
 
-server.on('connection', function(socket) {
+server.on('connection', function(err, socket) {
+  if(err) console.log(err);
   var client = new Client(socket);
   userPool.push(client);
   console.log(userPool);
@@ -109,7 +115,8 @@ server.on('connection', function(socket) {
   socket.write('          ╲┣━━━━━━┫\n'.white);
   socket.write('Type @FML for a list of directions\n');
 
-  socket.on('data', function(data) {
+  socket.on('data', function(err, data) {
+    if(err) console.log(err);
     const command = data.toString().split(' ').shift().trim();
 
     if (command.startsWith('@')) {
