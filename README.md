@@ -1,48 +1,26 @@
 James' Chat Server
 ======
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+This project creates a simple TCP chat room using Node leveraging the 'net' module. Any number of users can connect to the chat room and communicate with one another. The Node 'net' module allows a developer to create any kind of TCP server and, in this case, handle simple user input and output based on the data received. This program first creates a Client through a Client Constructor and uses NPM uuid to generate unique universal ids for each client. The simplest method to connect to the chat server is telnet, built into most operating systems in some form. Although, many other similar TCP clients exist. The server can respond to the following user "@" commands by parsing the text at the beginning of a line of text sent by a user.
 
-## Learning Objectives  
-* students will understand how to implement a TCP server using the `net` module
-* students will understand how to work with node.js EventEmitter's
+```'.......................................................................\n',
+'.   o   \\ o /  _ o        __|    \\ /     |__         o _  \\ o /   o   .\n',
+'.  /|\\    |     /\\   __\\o   \\\o    |    o/     o/__   /\\     |    /|\\  .\n',
+'.  / \\   / \\   | \\  /) |    ( \\  /o\\  / )    |   (\\  / |   / \\   / \\  .\n',
+'.......................................................................\n',
+'. cmd: \'@FML\' to view help instructions.                              .\n',
+'. cmd: \'@all <msg>\' to send a message to everyone in chat.            .\n',
+'. cmd: \'@dm <name> <msg>\' to private message another user.            .\n',
+'. cmd: \'@nickname <name>\' to change your name.                        .\n',
+'. cmd: \'@quit\' to exit chat room.                                     .\n',
+'.......................................................................\n'```
 
-## Requirements
-#### Configuration  
-<!-- list of files, configurations, tools, etc that are required -->
-Your lab directory must include  
-* `.gitignore`
-* `.eslint`
-* `package.json`
-* `README.md`
-
-#### Feature Tasks  
-* create a TCP Server using the NodeJS native `net` module
-* create a `Client` Constructor
-* when sockets connect to the server, a new `Client` instance should be made
-* all clients should have a unique `id` property - this should come from the use of `node-uuid`
-* when sockets are connected with the client pool they should be given event listeners for `data`, `error`, and `close` events
- * when a socket emits the `close` event, the socket should be removed from the client pool
- * when a socket emits the `error` event, the error should be logged on the server
- * when a socket emits the `data` event, the data should be logged on the server and the commands below should be implemented
-
-## Custom commands
-* `@all` should trigger a broadcast event
-* `@nickname` should allow a user change their nickname
-* `@dm` should allow a user to send a message directly to another user by nick name or by their guest id _(unique client id)_
-* when a user sends a message, their nickname should be printed
-  * **i.e.** `cfcrew: sup hackerz`
-
-####  Documentation  
-* write a paragraph about your project
-* write documentation on how to get the project running
-* write documentation on how to connect to the server
-
-#### Testing  
-* no testing required for this lab - yay!
+The following are basic instructions:
+Start the server:
+Requirements: Node is installed and navigated to the working directory of the chat room application.
+Instructions:
+Run ```npm I``: to get all dependencies.
+```'npm run start'```: to start the server.
+Connect to the server:
+Requirements: A client, such as telnet, is installed and the IP or hostname of the server is known.
+Instructions: ex ```'telnet 127.0.0.1 3000'```
