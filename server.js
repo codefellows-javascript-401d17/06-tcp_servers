@@ -37,6 +37,12 @@ server.on('connection', function (socket) {
   var client = new Client(socket);
   pool.push(client);
 
+  socket.on('close', function () {
+    pool = pool.filter(function (currentSocket) {
+      return (!currentSocket.socket.destroyed);
+    });
+    console.log(pool);
+  })
 
   socket.on('data', function (data) {
     const command = data.toString().split(' ').shift().trim();
