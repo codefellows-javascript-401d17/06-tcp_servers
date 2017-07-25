@@ -25,14 +25,14 @@ let helpMe = [
   '.......................................................................\n'.white
 ];
 
-ee.on('@FML', function(err, client) {
+ee.on('@FML', function(client, err) {
   if(err) console.log(err);
   helpMe.forEach( helpCommand => {
     client.socket.write(helpCommand);
   });
 });
 
-ee.on('@nickname', function(err, client, string){
+ee.on('@nickname', function(client, string, err){
   if(err) console.log(err);
   let nickname = string.split(' ').slice(0).join(' ').trim();
   console.log(nickname);
@@ -53,7 +53,7 @@ ee.on('@nickname', function(err, client, string){
   });
 });
 
-ee.on('@dm', function(err, client, string) {
+ee.on('@dm', function(client, string, err) {
   if(err) console.log(err);
   let nickname = string.split(' ').shift().trim();
   let message = string.split(' ').slice(1).join(' ').trim();
@@ -67,7 +67,7 @@ ee.on('@dm', function(err, client, string) {
   });
 });
 
-ee.on('@all', function(err, client, string) {
+ee.on('@all', function(client, err, string) {
   if(err) console.log(err);
   userPool.forEach( c => {
     if (userPool.length === 1 ) {
@@ -79,7 +79,7 @@ ee.on('@all', function(err, client, string) {
   });
 });
 
-ee.on('@quit', function(err, client) {
+ee.on('@quit', function(client, err) {
   if(err) console.log(err);
   let newPool = [];
 
@@ -98,7 +98,7 @@ ee.on('default', function(client) {
   client.socket.write('not a command \n');
 });
 
-server.on('connection', function(err, socket) {
+server.on('connection', function(socket, err) {
   if(err) console.log(err);
   var client = new Client(socket);
   userPool.push(client);
@@ -115,12 +115,12 @@ server.on('connection', function(err, socket) {
   socket.write('          ╲┣━━━━━━┫\n'.white);
   socket.write('Type @FML for a list of directions\n');
 
-  socket.on('data', function(err, data) {
+  socket.on('data', function(data, err) {
     if(err) console.log(err);
     const command = data.toString().split(' ').shift().trim();
 
     if (command.startsWith('@')) {
-      ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
+      ee.emit(command, client, err, data.toString().split(' ').splice(1).join(' '));
       return;
     }
 
