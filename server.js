@@ -72,13 +72,9 @@ ee.on('@quit', function(client) {
   client.socket.end();
 });
 
-ee.on('default', function(client, string) {
+ee.on('default', function(client) {
   client.socket.write('not a command \n');
 });
-
-
-
-
 
 server.on('connection', function(socket) {
   var client = new Client(socket);
