@@ -21,7 +21,7 @@ ee.on('@dm', (client, string) => {
 
 ee.on('@all', (client, string) => {
   pool.forEach((c) => {
-    c.socket.write(`${client.nickname}: ${message}`);
+    c.socket.write(`${client.nickname}: ${string}`);
   });
 });
 
@@ -34,7 +34,7 @@ ee.on('default', (client, string) => {
 });
 
 server.on('connection', (socket) => {
-  var client = new Client(socket);
+  var client = new Client(data);
   pool.push(Client);
 
   socket.on('data', (socket) => {
