@@ -8,10 +8,13 @@ const server = net.createServer();
 const ee = new EE();
 const clientPool = [];
 
-ee.on('@close', function(client, string) {
-  console.log('ee close');
-  ee.emit('end');
-  // return server.on(close);
+ee.on('@newname', function(client, string) {
+  if(string == '') {
+    client.socket.write('Enter new name\n');
+    return;
+  }
+  client.nickname = string.split(' ').shift().trim();
+  client.socket.write(`Your new name is ${client.nickname}!\n`);
 });
 
 ee.on('@dm', function(client,string) {
@@ -40,30 +43,28 @@ server.on('error', function(error) {
   throw error;
 });
 
-server.on('end', function(client, string) {
-  console.log('inside');
-  console.log(`${client.nickname}: left the chat`);
-  clientPool.forEach((c, index) => {
-    if(c.nickname === nickname) {
-      clientPool.splice(index, 1);
-    }
-  });
-  // return;
-});
-
 server.on('connection', function(socket) {
   var client = new Client(socket);
   clientPool.push(client);
 
   socket.on('data', function(data) {
     const command = data.toString().split(' ').shift().trim();
-
     if(command.startsWith('@')) {
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
       return;
     }
 
     ee.emit('default', client, data.toString());
+  });
+
+  socket.on('close', function() {
+    console.log(`${client.nickname}: left the chat`);
+    clientPool.forEach((c, index) => {
+      if(c.nickname === client.nickname) {
+        clientPool.splice(index, 1);
+      }
+    });
+    return;
   });
 });
 
