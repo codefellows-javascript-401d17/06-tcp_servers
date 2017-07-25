@@ -9,12 +9,13 @@ const ee = new EE();
 
 let pool = [];
 let helpGuide = [
-  '\n--------------------------------------------------\n',
+  '\n-------------------------------------------------------------\n',
   '\n>>> cmd: \'@all <msg>\' to send a message to all\n',
   '\n>>> cmd: \'@dm <name> <msg>\' to private message user\n',
   '\n>>> cmd: \'@nickname <name>\' to change your name\n',
   '\n>>> cmd: \'@exit\' to exit chat room\n',
-  '\n--------------------------------------------------\n'
+  '\n>>> cmd: \'#angry, #love, #lenny, #shrug\' to use emojis',
+  '\n-------------------------------------------------------------\n'
 ];
 
 ee.on('default', function(client) {
@@ -62,6 +63,30 @@ ee.on('@nickname', function(client, string) {
   client.nickname = string.split(' ').shift().trim();
 });
 
+ee.on('#angry', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: (╯°□°）╯︵ ┻━┻\n`);
+  });
+});
+
+ee.on('#shrug', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: ¯\_(ツ)_/¯\n`);
+  });
+});
+
+ee.on('#lenny', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: ( ͡° ͜ʖ ͡°)\n`);
+  });
+});
+
+ee.on('#love', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: ♥‿♥\n`);
+  });
+});
+
 server.on('connection', function(socket) {
   let client = new Client(socket);
 
@@ -78,6 +103,11 @@ server.on('connection', function(socket) {
     const command = data.toString().split(' ').shift().trim();
 
     if (command.startsWith('@')) {
+      ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
+      return;
+    }
+
+    if (command.startsWith('#')) {
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
       return;
     }
