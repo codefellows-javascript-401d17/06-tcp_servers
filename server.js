@@ -19,6 +19,16 @@ ee.on('default', function (client, string) {
   client.socket.write('not a command \n');
 })
 
+ee.on('@dm', function (client, string) {
+  let nickname = string.split(' ').shift().trim();
+  let message = string.split(' ').slice(1).trim();
+  pool.forEach(function (client) {
+    if (client.nickname === nickname) {
+      client.socket.write(`${client.nickname} : ${message}`);
+    }
+  })
+})
+
 server.on('connection', function (socket) {
   var client = new Client(socket);
   pool.push(client);
