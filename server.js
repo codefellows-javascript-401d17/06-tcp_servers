@@ -71,7 +71,7 @@ ee.on('#angry', function(client) {
 
 ee.on('#reallyangry', function(client) {
   pool.forEach( el => {
-    el.socket.write(`${client.nickname}: (╯°□°）╯︵ ┻━┻︵ ┻━┻\\n`);
+    el.socket.write(`${client.nickname}: (╯°□°）╯︵ ┻━┻︵ ┻━┻\n`);
   });
 });
 
