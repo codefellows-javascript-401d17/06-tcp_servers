@@ -1,4 +1,4 @@
-![cf](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwi5-JbtgqTVAhVJ7GMKHVOEDsMQjRwIBw&url=http%3A%2F%2Fp2psearcher.info%2Fnyan-cat-rainbow-png&psig=AFQjCNH3_RXuFhemSfVYgg3F0Y9tpx2r7w&ust=1501057971006175) Lab 06: TCP Chat Server
+!James' Chat Server
 ======
 
 ## Submission Instructions
