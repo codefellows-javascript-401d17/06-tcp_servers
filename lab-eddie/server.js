@@ -9,9 +9,6 @@ const ee = new EE();
 
 let pool = [];
 
-ee.on('@all', function(client, string) {
-  pool.forEach(c => c.socket.write(`${client.nickname}: ${string}`));
-});
 
 ee.on('default', function(client) {
   client.socket.write('not a command \n');
@@ -21,6 +18,10 @@ ee.on('@nickname', function(client, string) {
   let nickname = string.split(' ').shift().trim();
   client.nickname = nickname;
   client.socket.write(`User name changed to : ${nickname}\n`);
+});
+
+ee.on('@all', function(client, string) {
+  pool.forEach(c => c.socket.write(`${client.nickname}: ${string}`));
 });
 
 ee.on('@dm', function(client, string) {
