@@ -2,7 +2,7 @@
 
 const net = require('net');
 const EE = require('events');
-const colors = require('colors');
+const colors = require('colors'); // eslint-disable-line
 const Client = require('./model/client.js');
 const PORT = process.env.PORT || 3000;
 const server = net.createServer();
