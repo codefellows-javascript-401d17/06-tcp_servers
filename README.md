@@ -14,14 +14,23 @@ This project creates a simple TCP chat room using Node leveraging the 'net' modu
 . cmd: '@dm <name> <msg>' to private message another user.            .
 . cmd: '@nickname <name>' to change your name.                        .
 . cmd: '@quit' to exit chat room.                                     .
-.......................................................................```
+.......................................................................
+```
 
 The following are basic instructions:
 Start the server:
 Requirements: Node is installed and navigated to the working directory of the chat room application.
 Instructions:
-Run ```npm I``: to get all dependencies.
-```'npm run start'```: to start the server.
+Run ```
+npm I
+```: to get all dependencies.
+```
+npm run start
+```
+: to start the server.
 Connect to the server:
 Requirements: A client, such as telnet, is installed and the IP or hostname of the server is known.
-Instructions: ex ```'telnet 127.0.0.1 3000'```
+Instructions: ex
+```
+telnet 127.0.0.1 3000
+```
