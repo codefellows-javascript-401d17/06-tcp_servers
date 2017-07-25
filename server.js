@@ -32,13 +32,22 @@ ee.on('@FML', function(client) {
 });
 
 ee.on('@nickname', function(client, string){
-
-  if(string !== ''){
-    client.nickname = string.split(' ').shift().trim();
-    client.socket.write(`Your new nickname is ${client.nickname}.\n`.green);
-  }else {
-    client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red);
-  }
+  let nickname = string.split(' ').slice(0).join(' ').trim();
+  console.log(nickname);
+  userPool.forEach(c =>{
+    if(c.nickname === nickname){
+      client.socket.write(`${nickname} has already been chosen!\n`);
+    }else if (c.nickname !== nickname) {
+      if(string !== ''){
+        client.nickname = string.split(' ').shift().trim();
+        client.socket.write(`Your new nickname is ${client.nickname}.\n`.green);
+      }else {
+        client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red);
+      }
+    }else{
+      client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red)
+    }
+  });
 });
 
 ee.on('@dm', function(client, string) {
@@ -48,6 +57,8 @@ ee.on('@dm', function(client, string) {
   userPool.forEach( c => {
     if (c.nickname === nickname) {
       c.socket.write(`${client.nickname}: ${message}`);
+    }else{
+      c.socket.write('There is no user by that nickname.\n');
     }
   });
 });
