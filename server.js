@@ -44,6 +44,10 @@ server.on('connection', function (socket) {
     console.log(pool);
   })
 
+  socket.on('error', function (err) {
+    console.error(err);
+  });
+
   socket.on('data', function (data) {
     const command = data.toString().split(' ').shift().trim();
     if (command.startsWith('@')) {
