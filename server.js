@@ -35,7 +35,7 @@ ee.on('@nickname', function(client, string){
 
   if(string !== ''){
     client.nickname = string.split(' ').shift().trim();
-    client.socket.write(`Your new nickname is ${client.nickname}.\n`);
+    client.socket.write(`Your new nickname is ${client.nickname}.\n`.green);
   }else {
     client.socket.write(`${client.nickname}, you did not enter a new nickname.\n`.red);
   }
