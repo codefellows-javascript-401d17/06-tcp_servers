@@ -21,13 +21,15 @@ The following are basic instructions:
 Start the server:
 Requirements: Node is installed and navigated to the working directory of the chat room application.
 Instructions:
-Run ```
+Run
+```
 npm I
-```: to get all dependencies.
+```
+gets all dependencies.
 ```
 npm run start
 ```
-: to start the server.
+starts the server.
 Connect to the server:
 Requirements: A client, such as telnet, is installed and the IP or hostname of the server is known.
 Instructions: ex
