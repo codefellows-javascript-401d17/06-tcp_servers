@@ -25,6 +25,10 @@ ee.on('@all', (client, string) => {
   });
 });
 
+ee.on('@rename', (client, string) => {
+  client.nickname = string.split(' ').shift().trim();
+});
+
 ee.on('default', (client, string) => {
   client.socket.write('not a command \n');
 });
@@ -40,9 +44,13 @@ server.on('connection', (socket) => {
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
       return;
     }
+  });
 
-    
-    ee.emit('default', client, data.toString());
+  socket.on('close', (client) => {
+    pool.forEach((c) => {
+      if(client.nickname === client.nickname){
+      pool.splice(i);
+    };
   });
 });
 
