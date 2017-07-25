@@ -29,6 +29,10 @@ ee.on('@dm', function (client, string) {
   })
 })
 
+ee.on('@nickname', function (client, string) {
+  client.nickname = string.trim();
+});
+
 server.on('connection', function (socket) {
   var client = new Client(socket);
   pool.push(client);
