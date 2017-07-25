@@ -17,10 +17,10 @@ This project creates a simple TCP chat room using Node leveraging the 'net' modu
 .......................................................................
 ```
 
-The following are basic instructions:
-Start the server:
-Requirements: Node is installed and navigated to the working directory of the chat room application.
-Instructions:
+#The following are basic instructions:
+##Start the server:
+####Requirements: Node is installed and navigated to the working directory of the chat room application.
+##Instructions:
 Run
 ```
 npm I
@@ -30,7 +30,8 @@ gets all dependencies.
 npm run start
 ```
 starts the server.
-Connect to the server:
+
+##Connect to the server:
 Requirements: A client, such as telnet, is installed and the IP or hostname of the server is known.
 Instructions: ex
 ```
