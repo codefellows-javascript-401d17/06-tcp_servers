@@ -32,7 +32,7 @@ ee.on('@FML', function(client, err) {
   });
 });
 
-ee.on('@nickname', function(client, string, err){
+ee.on('@nickname', function(client, err, string){
   if(err) console.log(err);
   let nickname = string.split(' ').slice(0).join(' ').trim();
   console.log(nickname);
@@ -53,7 +53,7 @@ ee.on('@nickname', function(client, string, err){
   });
 });
 
-ee.on('@dm', function(client, string, err) {
+ee.on('@dm', function(client, err, string) {
   if(err) console.log(err);
   let nickname = string.split(' ').shift().trim();
   let message = string.split(' ').slice(1).join(' ').trim();
@@ -67,7 +67,7 @@ ee.on('@dm', function(client, string, err) {
   });
 });
 
-ee.on('@all', function(client, err, string) {
+ee.on('@all', function(client, string, err) {
   if(err) console.log(err);
   userPool.forEach( c => {
     if (userPool.length === 1 ) {
