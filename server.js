@@ -14,7 +14,7 @@ let helpGuide = [
   '\n>>> cmd: \'@dm <name> <msg>\' to private message user\n',
   '\n>>> cmd: \'@nickname <name>\' to change your name\n',
   '\n>>> cmd: \'@exit\' to exit chat room\n',
-  '\n>>> cmd: \'#angry, #love, #lenny, #shrug\' to use emojis',
+  '\n>>> emojis: \'#angry, #reallyangry, #calm, #dog, \n #cat, #shrug, #warlizard\'',
   '\n-------------------------------------------------------------\n'
 ];
 
@@ -69,15 +69,34 @@ ee.on('#angry', function(client) {
   });
 });
 
+ee.on('#reallyangry', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: (╯°□°）╯︵ ┻━┻︵ ┻━┻\\n`);
+  });
+});
+
+ee.on('#calm', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: ┬──┬ ノ(゜-゜ノ)\n`);
+  });
+});
+
+
 ee.on('#shrug', function(client) {
   pool.forEach( el => {
     el.socket.write(`${client.nickname}: ¯\_(ツ)_/¯\n`);
   });
 });
 
-ee.on('#lenny', function(client) {
+ee.on('#dog', function(client) {
   pool.forEach( el => {
-    el.socket.write(`${client.nickname}: ( ͡° ͜ʖ ͡°)\n`);
+    el.socket.write(`${client.nickname}: ˁ˚ᴥ˚ˀ\n`);
+  });
+});
+
+ee.on('#cat', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: =^..^=\n`);
   });
 });
 
@@ -86,6 +105,14 @@ ee.on('#love', function(client) {
     el.socket.write(`${client.nickname}: ♥‿♥\n`);
   });
 });
+
+
+ee.on('#warlizard', function(client) {
+  pool.forEach( el => {
+    el.socket.write(`${client.nickname}: ಠ_ಠ\n`);
+  });
+});
+
 
 server.on('connection', function(socket) {
   let client = new Client(socket);
