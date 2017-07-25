@@ -1,9 +1,9 @@
-#About 
+# About 
 * This app sets up a localhost TCP chat server. We are able to connect to a server, be given a default user name and have the ability to change it, if so desired. From here we can see everyone that connects and there messages. We are able to message someone directly so it can not be seen by anyone else or shout out to everyone on the channel. When a user disconnects, they are terminated and can't access the chat server until they reconnect.
 
-##Starting the Server
+## Starting the Server
 =====================
-###ALTTIT = Type in Terminal
+### ALTTIT = Type in Terminal
 ============================
 
 1. Clone Project down to local machine
