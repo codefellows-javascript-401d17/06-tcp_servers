@@ -1,48 +1,35 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 06: TCP Chat Server
-======
+# Project Name
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+TODO: This project is a TCP chat server. It allows users to connect to a local server via telnet to communicate with others users. There are several commands that provide different functionality. 
 
-## Learning Objectives  
-* students will understand how to implement a TCP server using the `net` module
-* students will understand how to work with node.js EventEmitter's
+## How to run
 
-## Requirements
-#### Configuration  
-<!-- list of files, configurations, tools, etc that are required -->
-Your lab directory must include  
-* `.gitignore`
-* `.eslint`
-* `package.json`
-* `README.md`
+1. Clone the project to a directory
+2. install npm dependencies using `npm i`
+3. Run the server with `node server.js` in your terminal window.
+4. In a separate terminal window or tab, run `telnet YOUR_IP 4000`. If you don't know your IP just go to [https://www.whatismyip.com/](https://www.whatismyip.com/)
+5. Type your messages from within telnet.
 
-#### Feature Tasks  
-* create a TCP Server using the NodeJS native `net` module
-* create a `Client` Constructor
-* when sockets connect to the server, a new `Client` instance should be made
-* all clients should have a unique `id` property - this should come from the use of `node-uuid`
-* when sockets are connected with the client pool they should be given event listeners for `data`, `error`, and `close` events
- * when a socket emits the `close` event, the socket should be removed from the client pool
- * when a socket emits the `error` event, the error should be logged on the server
- * when a socket emits the `data` event, the data should be logged on the server and the commands below should be implemented
+## Usage
 
-## Custom commands
-* `@all` should trigger a broadcast event
-* `@nickname` should allow a user change their nickname
-* `@dm` should allow a user to send a message directly to another user by nick name or by their guest id _(unique client id)_
-* when a user sends a message, their nickname should be printed
-  * **i.e.** `cfcrew: sup hackerz`
+This app has the following features from within telnet, they are in the following format:
 
-####  Documentation  
-* write a paragraph about your project
-* write documentation on how to get the project running
-* write documentation on how to connect to the server
+```bash
+@all [message-to-all-users] -- to message everyone
+@nickname [a-different-nickname] -- to change your own nickname
+@dm [other-nickname] [message] -- to message a user individually
 
-#### Testing  
-* no testing required for this lab - yay!
+ ```
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+
+## License
+
+MIT
