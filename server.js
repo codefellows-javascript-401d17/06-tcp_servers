@@ -67,7 +67,7 @@ ee.on('@dm', function(client, err, string) {
   });
 });
 
-ee.on('@all', function(client, string, err) {
+ee.on('@all', function(client, err, string) {
   if(err) console.log(err);
   userPool.forEach( c => {
     if (userPool.length === 1 ) {
