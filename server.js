@@ -34,10 +34,10 @@ ee.on('default', (client, string) => {
 });
 
 server.on('connection', (socket) => {
-  var client = new Client(data);
+  var client = new Client(socket);
   pool.push(Client);
 
-  socket.on('data', (socket) => {
+  socket.on('data', (data) => {
     const command = data.toString().split(' ').shift().trim();
 
     if(command.startsWith('@')) {
@@ -48,9 +48,10 @@ server.on('connection', (socket) => {
 
   socket.on('close', (client) => {
     pool.forEach((c) => {
-      if(client.nickname === client.nickname){
-      pool.splice(i);
-    };
+      if(client.nickname === client.nickname) {
+        pool.splice(i);
+      };
+    });
   });
 });
 
