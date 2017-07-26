@@ -25,8 +25,12 @@ ee.on('@all',function (client, string) {
   });
 });
 
+ee.on('@nickname', function(client, nameForClient){
+  client.nickname = nameForClient[0];
+});
+
 ee.on('default', function(client, string){
-  client.socket.write('not a command \n');
+  client.socket.write('try a command\n');
 });
 server.on ('connection', function(socket){
   var client = new Client(socket);
@@ -36,13 +40,25 @@ server.on ('connection', function(socket){
     const command = data.toString().split(' ').shift().trim();
     if(command.startsWith('@')){
       ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
-      return
-    }
+    };
 
     ee.emit('default', client, data.toString());
+
+  });
+    socket.on('close', function(){
+      pool.forEach((user,index) => {
+      if(user.nickname === client.nickname){
+        console.log(user.nickname, ' disconnected');
+        pool.splice(index, 1);
+      };
+    });
+  });
+  socket.on('error', function(err){
+    console.log(new Error('someone goofed', socket.nickname))
   });
 });
 
+
 server.listen(PORT, function(){
   console.log('server is online.....\nPORT', PORT);
-})
+});
