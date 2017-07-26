@@ -11,7 +11,7 @@ const pool = [];
 
 ee.on('@dm', (client, string) => {
   let nickname = string.split(' ').shift().trim();
-  let message = string.split(' ').splice(1).trim();
+  let message = string.split(' ').splice(1).join(' ').trim();
 
   pool.forEach((client) => {
     if(client.nickname === nickname)
@@ -35,7 +35,7 @@ ee.on('default', (client, string) => {
 
 server.on('connection', (socket) => {
   var client = new Client(socket);
-  pool.push(Client);
+  pool.push(client);
 
   socket.on('data', (data) => {
     const command = data.toString().split(' ').shift().trim();
