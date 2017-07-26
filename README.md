@@ -9,4 +9,4 @@ This app hosts conversations between all users connected through the same server
 When the user exits the chat server they are then removed from the chat pool. Follow the instructions below to connect.
 
 ## Connect to Server and Launch:
-The app is run from the console with telnet. It looks like `telnet [enter host IP address] 3000` If launched successfully you should get a message `server listening on: 3000`.  
+The app is run from the console with telnet. It looks like `telnet [enter host IP address] 3000`. If launched successfully you should get a message `server listening on: 3000`.  

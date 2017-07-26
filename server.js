@@ -36,7 +36,7 @@ ee.on('default', function(client, string){
 
 server.on('connection', function(socket) {
   var client = new Client(socket);
-  pool.push = client;
+  pool.push(client);
 
   socket.on('data', function(data){
     const command = data.toString().split(' ').shift().trim();
@@ -49,7 +49,7 @@ server.on('connection', function(socket) {
     ee.emit('default', client, data.toString());
   });
 
-  socket.on('error', function(err){
+  socket.on('error', function(err) {
     console.error(err);
   });
 
