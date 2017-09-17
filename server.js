@@ -7,58 +7,63 @@ const PORT = process.env.PORT || 3000;
 const server = net.createServer();
 const ee = new EE();
 
-const pool = [];
-ee.on('@dm', function(client,string) {
-  let nickname = string.split(' ').shift().trim();
-  let message = string.split(' ').splice().join(' ').trim();
+let pool = [];
 
-  pool.forEach( c=> {
-    if (c.nickname === nickname){
-      c.socket.write(`${client.nickname}: ${message}`);
-    }
-  })
-})
-
-ee.on('@all',function (client, string) {
-  pool.forEach( c => {
-    c.socket.write(`${client.nickname}: ${string}`);
+ee.on('@all', function(client, msgArr) {
+  pool.forEach(c => {
+    c.socket.write(`${c.nickname}: ${msgArr.join(' ')}`);
   });
 });
 
-ee.on('@nickname', function(client, nameForClient){
-  client.nickname = nameForClient[0];
+ee.on('@dm', function(client, msgArr) {
+  pool.forEach(c => {
+    if (msgArr[0] === c.nickname) {
+      msgArr = msgArr.splice(1);
+      console.log(msgArr);
+      c.socket.write(`${client.nickname}: ${msgArr.join(' ')}`);
+    }
+  });
 });
 
-ee.on('default', function(client, string){
-  client.socket.write('try a command\n');
+ee.on('@nickname', function(client, msgArr) {
+  client.nickname = msgArr[0];
 });
-server.on ('connection', function(socket){
-  var client = new Client(socket);
+
+
+ee.on('default', function(client) {
+  client.socket.write('Connected:');
+});
+
+server.on('connection', function(socket) {
+  let client = new Client(socket);
   pool.push(client);
 
-  socket.on('data', function(data){
-    const command = data.toString().split(' ').shift().trim();
-    if(command.startsWith('@')){
-      ee.emit(command, client, data.toString().split(' ').splice(1).join(' '));
-    };
-
-    ee.emit('default', client, data.toString());
-
+  socket.on('data', function(data) {
+    const command = data.toString().split(' ');
+    command[command.length - 1] = command[command.length - 1].trim();
+    if (command[0].startsWith('@')) {
+      ee.emit(command[0], client, command.splice(1));
+      return;
+    }
   });
-    socket.on('close', function(){
-      pool.forEach((user,index) => {
-      if(user.nickname === client.nickname){
-        console.log(user.nickname, ' disconnected');
+
+  socket.on('close', function() {
+    console.log(`${client.nickname}: has left`);
+    pool.forEach((c, index) => {
+      if (c.nickname === client.nickname) {
         pool.splice(index, 1);
-      };
+      }
     });
+    return;
   });
-  socket.on('error', function(err){
-    console.log(new Error('someone goofed', socket.nickname))
+
+  socket.on('error', function(error) {
+    throw error;
   });
+
+  ee.emit('default', client);
 });
 
-
-server.listen(PORT, function(){
-  console.log('server is online.....\nPORT', PORT);
+server.listen(PORT, function() {
+  console.log('server is online.....\nPORT: ', PORT);
 });
